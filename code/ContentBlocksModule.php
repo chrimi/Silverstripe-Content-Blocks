@@ -32,7 +32,7 @@ class ContentBlocksModule extends DataExtension {
 			$SConfig->addComponent(new GridFieldCopyButton(), 'GridFieldDeleteAction');
 		}
 
-		$gridField = new GridField("Blocks", "Content blocks", $this->owner->Blocks(), $SConfig);
+		$gridField = new GridField("Blocks", _t('ContentBlocksModule.CONTENTBLOCKS', 'Content blocks'), $this->owner->Blocks(), $SConfig);
 		
 		$classes = array_values(ClassInfo::subclassesFor($gridField->getModelClass()));
 		

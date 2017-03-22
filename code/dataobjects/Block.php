@@ -136,7 +136,7 @@ class Block extends DataObject
 		$fields->removeByName('Files');
 
 		// Media tab
-		$fields->addFieldToTab('Root', new TabSet('Media'));
+		$fields->addFieldToTab('Root', new TabSet(_t('Block.MEDIA','Media')));
 
 		// If this Block belongs to more than one page, show a warning
 		// TODO: This is not working when a block is added under another block
@@ -144,30 +144,30 @@ class Block extends DataObject
 		if ($pcount > 1) {
 			$globalwarningfield = new LiteralField("IsGlobalBlockWarning", '<p class="message warning">This block is in use on ' . $pcount . ' pages - any changes made will also affect the block on these pages</p>');
 			$fields->addFieldToTab("Root.Main", $globalwarningfield, 'Name');
-			$fields->addFieldToTab("Root.Media.Images", $globalwarningfield);
-			$fields->addFieldToTab("Root.Media.Files", $globalwarningfield);
-			$fields->addFieldToTab("Root.Media.Video", $globalwarningfield);
+			$fields->addFieldToTab("Root."._t('Block.MEDIA','Media')."."._t('Block.IMAGES','Images'), $globalwarningfield);
+			$fields->addFieldToTab("Root."._t('Block.MEDIA','Media')."."._t('Block.FILES','Files'), $globalwarningfield);
+			$fields->addFieldToTab("Root."._t('Block.MEDIA','Media').".Video", $globalwarningfield);
 			$fields->addFieldToTab("Root.Template", $globalwarningfield);
 			$fields->addFieldToTab("Root.Settings", $globalwarningfield);
 		}
 
 		$fields->addFieldToTab("Root.Main", new TextField('Name', 'Name'));
-		$fields->addFieldToTab("Root.Main", new DropdownField('Header', 'Use name as header', $this->dbObject('Header')->enumValues()), 'Content');
-		$fields->addFieldToTab("Root.Main", new HTMLEditorField('Content', 'Content'));
-		$fields->addFieldToTab('Root.Main', CheckboxField::create('ContentAsColumns'));
+		$fields->addFieldToTab("Root.Main", new DropdownField('Header', _t('Block.USENAMEASHEADER', 'Use name as header'), $this->dbObject('Header')->enumValues()), 'Content');
+		$fields->addFieldToTab("Root.Main", new HTMLEditorField('Content', _t('Block.CONTENT', 'Content')));
+		$fields->addFieldToTab('Root.Main', CheckboxField::create('ContentAsColumns', _t('Block.CONTENTASCOLUMNS', 'Content as Columns')));
 
-		$imgField = new SortableUploadField('Images', 'Images');
+		$imgField = new SortableUploadField('Images', _t('Block.IMAGES', 'Images'));
 		$imgField->allowedExtensions = array('jpg', 'gif', 'png');
 
-		$croppingmethodfield = DropdownField::create('ImageCropMethod', 'Image cropping method', singleton('Block')->dbObject('ImageCropMethod')->enumValues())->setDescription('Does not work on all blocks');
+		$croppingmethodfield = DropdownField::create('ImageCropMethod', _t('Block.IMAGECROPPINGMETHOD', 'Image cropping method'), singleton('Block')->dbObject('ImageCropMethod')->enumValues())->setDescription('Does not work on all blocks');
 
-		$fields->addFieldToTab('Root.Media.Images', $imgField);
-		$fields->addFieldToTab('Root.Media.Images', $croppingmethodfield);
+		$fields->addFieldToTab("Root."._t('Block.MEDIA','Media')."."._t('Block.IMAGES','Images'), $imgField);
+		$fields->addFieldToTab("Root."._t('Block.MEDIA','Media')."."._t('Block.IMAGES','Images'), $croppingmethodfield);
 
-		$fileField = new SortableUploadField('Files', 'Files');
+		$fileField = new SortableUploadField('Files', _t('Block.FILES', 'Files'));
 
-		$fields->addFieldToTab('Root.Media.Files', $fileField);
-		$fields->addFieldToTab('Root.Media.Video', new TextField('VideoURL', 'Video URL'));
+		$fields->addFieldToTab("Root."._t('Block.MEDIA','Media')."."._t('Block.FILES','Files'), $fileField);
+		$fields->addFieldToTab("Root."._t('Block.MEDIA','Media').".Video", new TextField('VideoURL', 'Video URL'));
 
 		// Template tab
 		$optionset = array();

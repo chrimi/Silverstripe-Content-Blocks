@@ -1,0 +1,11 @@
+en:
+  ContentBlockModule:
+    CONTENTBLOCKS: 'Content blocks'
+  Block:
+    USENAMEASHEADER: 'Use name as header'
+    CONTENT: 'Content'
+    CONTENTASCOLUMNS: 'Content As Columns'
+    IMAGES: 'Images'
+    FILES: 'Files'
+    IMAGECROPPINGMETHOD: 'Image cropping method'
+    MEDIA: 'Media'

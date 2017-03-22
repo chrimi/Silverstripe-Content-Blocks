@@ -1,0 +1,11 @@
+de:
+  ContentBlocksModule:
+    CONTENTBLOCKS: 'Inhaltsblöcke'
+  Block:
+    USENAMEASHEADER: 'Name als Überschrift verwenden'
+    CONTENT: 'Inhalt'
+    CONTENTASCOLUMNS: 'Inhalte in Spalten anordnen'
+    IMAGES: 'Bilder'
+    FILES: 'Dateien'
+    IMAGECROPPINGMETHOD: 'Methode des Bildzuschnitts'
+    MEDIA: 'Medien'
